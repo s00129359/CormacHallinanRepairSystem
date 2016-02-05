@@ -106,7 +106,6 @@
                 $payStatus = "Not Paid";
             }
             $rId = $reports->id;
-            echo $rId;
             $cId
             ?>
             <tr>
@@ -119,7 +118,6 @@
                 $reports->id]) 
                 ?>
                 </td>
-                <td><?= h($reports->id) ?></td>
                 <td><?= h($reports->user_id) ?></td>
                 <td><?= h($reports->equipment) ?></td>
                 <td><?= h($StatusStatus) ?></td>

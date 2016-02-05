@@ -25,10 +25,10 @@
     </div>
   </div>
 </nav>
-<div class="mainDiv">
 
 <div id="tableWrapper">
 <div id="tableContainer" class="tableContainer">
+<div class="MainDiv">
 
     <h3><?= __('Reports') ?></h3>
 

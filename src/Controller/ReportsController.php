@@ -19,8 +19,8 @@ class ReportsController extends AppController
     public function index()
     {
         $this->paginate = [
-            //100 per ppage
-            'limit' => 100,
+            //20 per ppage
+            'limit' => 20,
             //order descing Id => Last on top
             'order' => ['Reports.id' => 'desc'],
             //Contain Users and Customers objects 

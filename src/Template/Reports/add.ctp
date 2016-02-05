@@ -71,7 +71,7 @@
             
             //Button to add customer
             echo $this->Html->link(
-                                    '+',
+                                    'Add Customer',
                                     '/customers/add',
                                     ['class' => 'btnAdd']
                                     // ['class' => 'button', 'target' => '_blank']

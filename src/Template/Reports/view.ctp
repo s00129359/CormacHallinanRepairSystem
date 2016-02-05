@@ -54,7 +54,20 @@ $NewModifiedDate = date("d-m-Y, g:i a", strtotime($CreatedDate));
 
 
 <div class="MainDiv">
-    <h3><?= h($report->id) ?></h3>
+
+        <div class="row">
+        <h4><?= __('Description') ?></h4>
+        <?= $this->Text->autoParagraph(h($report->description)); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Notes') ?></h4>
+        <?= $this->Text->autoParagraph(h($report->notes)); ?>
+    </div>
+    <div class="row">
+        <h4><?= __('Conclusion') ?></h4>
+        <?= $this->Text->autoParagraph(h($report->conclusion)); ?>
+    </div>
+
     <table class="vertical-table" tdd>
         <tr>
             <td><?= __('Entered By') ?></td>
@@ -142,16 +155,5 @@ $NewModifiedDate = date("d-m-Y, g:i a", strtotime($CreatedDate));
             <td><?= $report->email_list ? __('Yes') : __('No'); ?></td>
          </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($report->description)); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Notes') ?></h4>
-        <?= $this->Text->autoParagraph(h($report->notes)); ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Conclusion') ?></h4>
-        <?= $this->Text->autoParagraph(h($report->conclusion)); ?>
-    </div>
+
 </div>
