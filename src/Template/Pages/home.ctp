@@ -1,4 +1,5 @@
 <?php
+//Go To Home Page
 header("Location: /reports");
 die();
 

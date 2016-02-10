@@ -54,16 +54,16 @@
             //Option = First and Second name concat
             // $custOption = array();
             foreach ($customers as $customer){
-                $cID = $customer['id'];
-                $cFName = $customer['fName'];
-                $cSName = $customer['sName'];
-                $cMob = $customer['mobile'];
-                $cEmail = $customer['email'];
+                $custId = $customer['id'];
+                $custFirstName = $customer['fName'];
+                $custSurName = $customer['sName'];
+                $custMobile = $customer['mobile'];
+                $custEmail = $customer['email'];
 
                 //concatonate
-                $FullName = $cFName." ".$cSName;
+                $FullName = $custFirstName." ".$custSurName;
                 //show customers full and mobile and landline for recognition 
-            $custOption[] = ["$cID" => "$FullName    ( $cMob  ) ( $cEmail )"];
+            $custOption[] = ["$custId" => "$FullName    ( $custMobile  ) ( $custEmail )"];
             }
 
             //Form Input Fields => user
