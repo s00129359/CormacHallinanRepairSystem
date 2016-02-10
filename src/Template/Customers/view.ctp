@@ -11,7 +11,6 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><?= $this->Html->link(__('Edit Customer'), ['action' => 'edit', $customer->id]) ?> </li>
-        <li><?= $this->Html->link(__('New Report'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('Add Customer'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Reports'), ['controller' => 'Reports', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
