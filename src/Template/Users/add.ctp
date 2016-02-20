@@ -15,14 +15,9 @@
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
 
     
-        <!-- <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li> -->
+       </ul>
+        <a href="users/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a>
       </ul>
-<!--       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul> -->
     </div>
   </div>
 </nav>
