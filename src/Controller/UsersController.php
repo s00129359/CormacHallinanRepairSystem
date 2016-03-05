@@ -18,7 +18,12 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $this->set('users', $this->paginate($this->Users));
+        //show all admin/employees
+        //dont show customer users
+        $query = $this->Users->find();
+        $query->where(['status !=' => 'customer']);
+
+        $this->set('users', $this->paginate($query));
         $this->set('_serialize', ['users']);
     }
 
@@ -115,11 +120,11 @@ class UsersController extends AppController
             return $this->redirect($this->Auth->redirectUrl());
         }
         $this->Flash->error('Your username or password is incorrect.');
-    }
+        }
     }
 
-        /**
-    Adding controller for login
+    /**
+    Adding controller for logout
     **/
     public function logout()
     {

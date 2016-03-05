@@ -56,6 +56,7 @@ class AppController extends Controller
             ]
         ]);
 
+        $this->loadComponent('Cookie', ['expiry' => '1 year']);
         // Allow the display action so our pages controller
         // continues to work.
         $this->Auth->allow(['display']);

@@ -48,7 +48,7 @@ class ReportsController extends AppController
     }
 
         //My Controller for sending SMS
-        public function sms($id = null)
+    public function sms($id = null)
     {
         $report = $this->Reports->get($id, [
             'contain' => ['Users', 'Customers']
