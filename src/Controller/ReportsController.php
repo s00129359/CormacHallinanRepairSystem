@@ -28,6 +28,13 @@ class ReportsController extends AppController
         ];
         $this->set('reports', $this->paginate($this->Reports));
         $this->set('_serialize', ['reports']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -45,9 +52,19 @@ class ReportsController extends AppController
 
         $this->set('report', $report);
         $this->set('_serialize', ['report']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+            
+            if ($this->Auth->user('id') != $report->customer_id) {
+            $this->Flash->error('you can not see that.');
+            return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+            }
+        }
     }
 
-        //My Controller for sending SMS
+    //My Controller for sending SMS
     public function sms($id = null)
     {
         $report = $this->Reports->get($id, [
@@ -56,6 +73,13 @@ class ReportsController extends AppController
 
         $this->set('report', $report);
         $this->set('_serialize', ['report']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -82,6 +106,13 @@ class ReportsController extends AppController
        
         $this->set(compact('report', 'users', 'customers'));
         $this->set('_serialize', ['report']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -109,6 +140,13 @@ class ReportsController extends AppController
         $customers = $this->Reports->Customers->find('list', ['limit' => 200]);
         $this->set(compact('report', 'users', 'customers'));
         $this->set('_serialize', ['report']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
 
@@ -131,5 +169,12 @@ class ReportsController extends AppController
             $this->Flash->error(__('The report could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        }
     }
 }

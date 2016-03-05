@@ -32,7 +32,7 @@
             echo $this->Form->input('password');
             echo $this->Form->input('fName');
             echo $this->Form->input('sName');
-            echo $this->Form->input('status');
+            echo $this->Form->input('role');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

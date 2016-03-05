@@ -28,15 +28,6 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
-    /**
-     * Initialization hook method.
-     *
-     * Use this method to add common initialization code like loading components.
-     *
-     * e.g. `$this->loadComponent('Security');`
-     *
-     * @return void
-     */
     public function initialize()
     {
 
@@ -57,14 +48,11 @@ class AppController extends Controller
         ]);
 
         $this->loadComponent('Cookie', ['expiry' => '1 year']);
+
         // Allow the display action so our pages controller
         // continues to work.
         $this->Auth->allow(['display']);
         
-        // parent::initialize();
-
-        // $this->loadComponent('RequestHandler');
-        // $this->loadComponent('Flash');
     }
 
     /**

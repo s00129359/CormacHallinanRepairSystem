@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -33,7 +34,7 @@
                 <th><?= __('id') ?></th>
                 <th><?= __('First') ?></th>
                 <th><?= __('Second') ?></th>
-                <th><?= __('Status') ?></th>
+                <th><?= __('role') ?></th>
                 <th><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -43,7 +44,7 @@
                 <td><?= $this->Number->format($user->id) ?></td>
                 <td><?= h($user->fName) ?></td>
                 <td><?= h($user->sName) ?></td>
-                <td><?= h($user->status) ?></td>
+                <td><?= h($user->role) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $user->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id]) ?>

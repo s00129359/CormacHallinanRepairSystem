@@ -44,8 +44,8 @@
             <td><?= h($user->sName) ?></td>
         </tr>
         <tr>
-            <td><?= __('Status') ?></td>
-            <td><?= h($user->status) ?></td>
+            <td><?= __('role') ?></td>
+            <td><?= h($user->role) ?></td>
         </tr>
         <tr>
             <td><?= __('Id') ?></td>
@@ -62,3 +62,15 @@
     </table>
     <br>
 </div>
+
+<?php
+
+$id = $this->request->session()->read('Auth.User.id');
+$role = $this->request->session()->read('Auth.User.role');
+
+if ($id != $customer->id) {
+    header("Location: /customers/view/$id");
+    exit();
+}
+
+?>

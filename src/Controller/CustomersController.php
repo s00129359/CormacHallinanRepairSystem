@@ -20,6 +20,13 @@ class CustomersController extends AppController
     {
         $this->set('customers', $this->paginate($this->Customers));
         $this->set('_serialize', ['customers']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -36,6 +43,17 @@ class CustomersController extends AppController
         ]);
         $this->set('customer', $customer);
         $this->set('_serialize', ['customer']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+
+            if ($this->Auth->user('id') != $customer->id) {
+            $this->Flash->error('you can not see that.');
+            return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+            }
+
+        }
     }
 
     /**
@@ -57,6 +75,13 @@ class CustomersController extends AppController
         }
         $this->set(compact('customer'));
         $this->set('_serialize', ['customer']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -82,6 +107,17 @@ class CustomersController extends AppController
         }
         $this->set(compact('customer'));
         $this->set('_serialize', ['customer']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+
+            if ($this->Auth->user('id') != $customer->id) {
+            $this->Flash->error('you can not see that.');
+            return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+            }
+            
+        }
     }
 
     /**
@@ -101,5 +137,6 @@ class CustomersController extends AppController
             $this->Flash->error(__('The customer could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+
     }
 }

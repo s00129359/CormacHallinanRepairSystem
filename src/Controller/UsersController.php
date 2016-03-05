@@ -21,10 +21,17 @@ class UsersController extends AppController
         //show all admin/employees
         //dont show customer users
         $query = $this->Users->find();
-        $query->where(['status !=' => 'customer']);
+        $query->where(['role !=' => 'customer']);
 
         $this->set('users', $this->paginate($query));
         $this->set('_serialize', ['users']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -41,6 +48,13 @@ class UsersController extends AppController
         ]);
         $this->set('user', $user);
         $this->set('_serialize', ['user']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -55,13 +69,20 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -80,13 +101,20 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
         }
         $this->set(compact('user'));
         $this->set('_serialize', ['user']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -105,7 +133,14 @@ class UsersController extends AppController
         } else {
             $this->Flash->error(__('The user could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        }
     }
 
     /**
@@ -116,8 +151,10 @@ class UsersController extends AppController
     if ($this->request->is('post')) {
         $user = $this->Auth->identify();
         if ($user) {
-            $this->Auth->setUser($user);
-            return $this->redirect($this->Auth->redirectUrl());
+        //get users status
+        $logId = $this->Auth->user('id');
+        $this->Auth->setUser($user);
+        return $this->redirect($this->Auth->redirectUrl());
         }
         $this->Flash->error('Your username or password is incorrect.');
         }
