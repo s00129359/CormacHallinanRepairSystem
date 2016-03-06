@@ -62,15 +62,3 @@
     </table>
     <br>
 </div>
-
-<?php
-
-$id = $this->request->session()->read('Auth.User.id');
-$role = $this->request->session()->read('Auth.User.role');
-
-if ($id != $customer->id) {
-    header("Location: /customers/view/$id");
-    exit();
-}
-
-?>

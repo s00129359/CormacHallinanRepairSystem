@@ -22,7 +22,7 @@ class CustomersController extends AppController
         $this->set('_serialize', ['customers']);
 
         /* authenticate 
-         * customers cant see admin */
+         * customers cant see other customers */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
         return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
@@ -44,8 +44,10 @@ class CustomersController extends AppController
         $this->set('customer', $customer);
         $this->set('_serialize', ['customer']);
 
+
         /* authenticate 
-         * customers cant see admin */
+         * if looged as customer
+         * it must be your profile */
         if ($this->Auth->user('role') == 'customer') {
 
             if ($this->Auth->user('id') != $customer->id) {
@@ -77,7 +79,7 @@ class CustomersController extends AppController
         $this->set('_serialize', ['customer']);
 
         /* authenticate 
-         * customers cant see admin */
+         * customers cant add Customers */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
         return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
@@ -109,7 +111,8 @@ class CustomersController extends AppController
         $this->set('_serialize', ['customer']);
 
         /* authenticate 
-         * customers cant see admin */
+         * if logged as a customer
+         * only you can edit your own profile */
         if ($this->Auth->user('role') == 'customer') {
 
             if ($this->Auth->user('id') != $customer->id) {
@@ -138,5 +141,17 @@ class CustomersController extends AppController
         }
         return $this->redirect(['action' => 'index']);
 
+        /*authenticate
+         * only admin can delete
+         */
+        if ($this->Auth->user('role') == 'customer') {
+            $this->Flash->error('you can not do that.');
+            return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+            }
+
+        if ($this->Auth->user('role') != 'employee') {
+            $this->Flash->error('you can not do that.');
+            return $this->redirect(['action' => 'index']);            
+        }
     }
 }

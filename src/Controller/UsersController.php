@@ -67,6 +67,7 @@ class UsersController extends AppController
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);
+            
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
                 return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
@@ -83,6 +84,15 @@ class UsersController extends AppController
         $this->Flash->error('you can not see that.');
         return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
         }
+
+        /* authenticate 
+         * only admin can add */
+        if ($this->Auth->user('role') == 'employee') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'index']);
+        }
+
+
     }
 
     /**
@@ -115,6 +125,18 @@ class UsersController extends AppController
         $this->Flash->error('you can not see that.');
         return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
         }
+
+        //employees can only edit their own
+        //admin can edit all
+        if ($this->Auth->user('role') == 'employee') {
+
+            if ($this->Auth->user('id') != $user->id) {
+                $this->Flash->error('you can not see that.');
+                return $this->redirect(['action' => 'index']);
+            }
+
+        }
+
     }
 
     /**
@@ -137,9 +159,9 @@ class UsersController extends AppController
 
         /* authenticate 
          * customers cant see admin */
-        if ($this->Auth->user('role') == 'customer') {
-        $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        if ($this->Auth->user('role') != 'admin') {
+        $this->Flash->error('you can do that.');
+        return $this->redirect(['action' => 'index']);
         }
     }
 

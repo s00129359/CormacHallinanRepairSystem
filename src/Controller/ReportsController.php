@@ -30,7 +30,8 @@ class ReportsController extends AppController
         $this->set('_serialize', ['reports']);
 
         /* authenticate 
-         * customers cant see admin */
+         * customers cant see reports
+         */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
         return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
@@ -54,7 +55,7 @@ class ReportsController extends AppController
         $this->set('_serialize', ['report']);
 
         /* authenticate 
-         * customers cant see admin */
+         * customers can only see ther reports */
         if ($this->Auth->user('role') == 'customer') {
             
             if ($this->Auth->user('id') != $report->customer_id) {
@@ -171,10 +172,16 @@ class ReportsController extends AppController
         return $this->redirect(['action' => 'index']);
 
         /* authenticate 
-         * customers cant see admin */
+         * only admin can delete
+         */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
         return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        }
+
+        if ($this->Auth->user('role') == 'employee') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['action' => 'index']);
         }
     }
 }
