@@ -18,6 +18,15 @@ class CustomersController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            //50 per ppage
+            'limit' => 50,
+            //order descing Id => Last on top
+            'order' => ['Customers.id' => 'desc'],
+            //Contain Users and Customers objects 
+            // 'contain' => ['Users', 'Customers']
+        ];
+
         $this->set('customers', $this->paginate($this->Customers));
         $this->set('_serialize', ['customers']);
 
@@ -25,7 +34,7 @@ class CustomersController extends AppController
          * customers cant see other customers */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 
@@ -50,9 +59,9 @@ class CustomersController extends AppController
          * it must be your profile */
         if ($this->Auth->user('role') == 'customer') {
 
-            if ($this->Auth->user('id') != $customer->id) {
+            if ($this->Auth->user('customerId') != $customer->id) {
             $this->Flash->error('you can not see that.');
-            return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+            return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
             }
 
         }
@@ -66,11 +75,22 @@ class CustomersController extends AppController
     public function add()
     {
         $customer = $this->Customers->newEntity();
+
         if ($this->request->is('post')) {
             $customer = $this->Customers->patchEntity($customer, $this->request->data);
+
             if ($this->Customers->save($customer)) {
-                $this->Flash->success(__('The customer has been saved.'));
-                return $this->redirect(['action' => 'index']);
+               // $this->Flash->success(__('The customer has been saved.'));
+                //get Id of customer just created
+                    //$id = 4;
+                $id = $customer->id;
+                $email = $customer->email;
+                //add to session
+                $session = $this->request->session();
+                $session->write('Config.id', $id); 
+                $session->write('Config.email', $email); 
+                //redirect to create profile
+                return $this->redirect(['controller' => 'Users', 'action' => 'addCustomer']);
             } else {
                 $this->Flash->error(__('The customer could not be saved. Please, try again.'));
             }
@@ -82,7 +102,7 @@ class CustomersController extends AppController
          * customers cant add Customers */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 
@@ -115,9 +135,9 @@ class CustomersController extends AppController
          * only you can edit your own profile */
         if ($this->Auth->user('role') == 'customer') {
 
-            if ($this->Auth->user('id') != $customer->id) {
+            if ($this->Auth->user('customerId') != $customer->id) {
             $this->Flash->error('you can not see that.');
-            return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+            return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
             }
             
         }
@@ -146,7 +166,7 @@ class CustomersController extends AppController
          */
         if ($this->Auth->user('role') == 'customer') {
             $this->Flash->error('you can not do that.');
-            return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+            return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
             }
 
         if ($this->Auth->user('role') != 'employee') {

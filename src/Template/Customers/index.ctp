@@ -1,3 +1,10 @@
+<?php
+
+    $session = $this->request->session()->read('id');
+    echo $session;
+
+?>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">

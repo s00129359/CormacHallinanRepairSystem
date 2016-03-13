@@ -34,7 +34,7 @@ class ReportsController extends AppController
          */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 
@@ -58,9 +58,9 @@ class ReportsController extends AppController
          * customers can only see ther reports */
         if ($this->Auth->user('role') == 'customer') {
             
-            if ($this->Auth->user('id') != $report->customer_id) {
+            if ($this->Auth->user('customerId') != $report->customer_id) {
             $this->Flash->error('you can not see that.');
-            return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+            return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
             }
         }
     }
@@ -79,7 +79,7 @@ class ReportsController extends AppController
          * customers cant see admin */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 
@@ -112,7 +112,7 @@ class ReportsController extends AppController
          * customers cant see admin */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 

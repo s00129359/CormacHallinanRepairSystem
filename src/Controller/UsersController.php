@@ -30,7 +30,7 @@ class UsersController extends AppController
          * customers cant see admin */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 
@@ -53,7 +53,7 @@ class UsersController extends AppController
          * customers cant see admin */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
         }
     }
 
@@ -70,7 +70,7 @@ class UsersController extends AppController
             
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
-                return $this->redirect(['action' => 'View', $this->Auth->user('id')]);
+                return $this->redirect(['action' => 'View', $this->Auth->user('customerId')]);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
@@ -82,7 +82,7 @@ class UsersController extends AppController
          * customers cant see admin */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['controller' => 'Reports', 'action' => 'index']);
         }
 
         /* authenticate 
@@ -94,6 +94,39 @@ class UsersController extends AppController
 
 
     }
+
+    public function addCustomer()
+    {
+
+        //add to users table
+        // ID, Email, Password
+
+
+        $user = $this->Users->newEntity();
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->data);
+            
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('The user has been saved.'));
+                return $this->redirect(['controller' => 'Reports', 'action' => 'index']);
+            } else {
+                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            }
+        }
+        $this->set(compact('user'));
+        $this->set('_serialize', ['user']);
+
+        /* authenticate 
+         * customers cant see admin */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
+        }
+
+
+    }
+
+    
 
     /**
      * Edit method
@@ -123,14 +156,14 @@ class UsersController extends AppController
          * customers cant see admin */
         if ($this->Auth->user('role') == 'customer') {
         $this->Flash->error('you can not see that.');
-        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('id')]);
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
         }
 
         //employees can only edit their own
         //admin can edit all
         if ($this->Auth->user('role') == 'employee') {
 
-            if ($this->Auth->user('id') != $user->id) {
+            if ($this->Auth->user('customerId') != $user->id) {
                 $this->Flash->error('you can not see that.');
                 return $this->redirect(['action' => 'index']);
             }
