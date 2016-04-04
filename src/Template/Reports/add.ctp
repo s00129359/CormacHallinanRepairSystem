@@ -1,11 +1,3 @@
- <script type="text/javascript">
- // alert("hio");
- window.onload = function() {
-    $("#customer-id").select2();
-    $(".js-example-basic-single").select2();
-}
- </script>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -35,15 +27,25 @@
     <fieldset>
         <legend><?= __('Add Report') ?></legend>
         <?php
+        // var_dump($customer);
+
             //TO put a VALUE and Option for Dropdown
             // Value = ID
-            //Optio = email
+            //Option = email
         $adminOption = array();
+
             foreach ($users as $user){
                 $uID = $user['id'];
                 $uEmail = $user['email'];
             $adminOption[] = ["$uID" => $uEmail];
             }
+
+            //Get Items from database
+            // foreach ($items as $item){
+            //     $itemID = $user['Id'];
+            //     $itemName = $user['Name'];
+            // $itemOption[] = ["$itemID" => $itemName];
+            // }
 
             // Value = ID
             //Option = First and Second name concat
@@ -74,9 +76,21 @@
 
             //Form Input Fields => add customer
             echo $this->Form->input('customer_id', ['options' => $custOption]);
+            ?>
+            <br>
+            <?php
+            
+            //Button to add Equipment
+            echo $this->Html->link(
+                                    'Add Equipment',
+                                    '/items/add',
+                                    ['class' => 'btnAdd0']
+                                    // ['class' => 'button', 'target' => '_blank']
+                                    );
 
+            //Add Items from Database
+            // echo $this->Form->input('equipment', ['options' => $itemOption]);
 
-            echo $this->Form->input('equipment');
             echo $this->Form->input('brand');
             echo $this->Form->input('description');
             echo $this->Form->input('accessories');
@@ -92,3 +106,10 @@
 
 
 
+ <script type="text/javascript">
+ // alert("hio");
+ window.onload = function() {
+    $("#customer-id").select2();
+    $(".js-example-basic-single").select2();
+}
+ </script>

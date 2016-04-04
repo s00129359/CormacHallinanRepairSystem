@@ -58,11 +58,7 @@
             <td><?= h($customer->landline) ?></td>
         </tr>
         <tr>
-            <td><?= __('Id') ?></td>
-            <td><?= $this->Number->format($customer->id) ?></td>
-        </tr>
-        <tr>
-            <td><?= __('Created') ?></td>
+            <td><?= __('Joined') ?></td>
             <td><?= h($customer->created) ?></td>
         </tr>
     </table>
@@ -75,6 +71,8 @@
                 <th><?= __('Report Id') ?></th>
                 <th><?= __('User Id') ?></th>
                 <th><?= __('Equipment') ?></th>
+                <th><?= __('Finished') ?></th>
+                <th><?= __('Created') ?></th>
                 <th><?= __('Finished') ?></th>
                 <th><?= __('Paid Status') ?></th>
             </tr>
@@ -115,6 +113,8 @@
                 <td><?= h($reports->user_id) ?></td>
                 <td><?= h($reports->equipment) ?></td>
                 <td><?= h($StatusStatus) ?></td>
+                <td><?= h($reports->created) ?></td>
+                <td><?= h($reports->completed_date) ?></td>
                 <td><?= h($payStatus) ?></td>
             </tr>
             <?php endforeach; ?>
@@ -122,15 +122,3 @@
     <?php endif; ?>
     </div>
 </div>
-
-// <?php
-
-// $id = $this->request->session()->read('Auth.User.id');
-// $role = $this->request->session()->read('Auth.User.role');
-
-// if ($id != $customer->id) {
-//     header("Location: /customers/view/$id");
-// exit();
-// }
-
-// ?>

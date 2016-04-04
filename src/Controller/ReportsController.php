@@ -38,6 +38,61 @@ class ReportsController extends AppController
         }
     }
 
+    public function collected()
+    {
+        $query = $this->Reports->find();
+        $query->where(['finished !=' => '1']);
+
+        $this->set('reports', $this->paginate($query));
+        $this->set('_serialize', ['reports']);
+
+        /* authenticate 
+         * customers cant see reports
+         */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
+        }
+    }
+
+        public function kpi()
+    {
+        $distinctEmplyee = $this->Reports->find()
+                      ->distinct('user_id')
+                      ->where(['finished' => 1])
+                      ->count();
+        $openTickets = $this->Reports->find()
+                      ->where(['finished' => 1])
+                      ->count();
+
+        $closedTickets = $this->Reports->find()
+                      ->where(['finished' => 0]);
+
+        $this->set('open', $openTickets);
+        $this->set('distinct', $distinctEmplyee);
+        $this->set('closed', $closedTickets);
+        $this->set('_serialize', ['reports']);
+
+        /* authenticate 
+         * customers cant see reports
+         */
+        if ($this->Auth->user('role') == 'customer') {
+        $this->Flash->error('you can not see that.');
+        return $this->redirect(['controller' => 'Customers', 'action' => 'View', $this->Auth->user('customerId')]);
+        }
+    }
+
+    public function export() {
+
+    $reports = $this->Reports->find('all');
+    $_serialize = 'reports';
+    $_header = ['ID', "user_id", "customer_id", "items_id", "equipment", "brand", "description", "accessories", "notes", "priority", "created", "modified", "finished", "conclusion", "completed_date", "paid_status", "amount_due", "sms_list", "email_list", "smsSendDate", "emailSendDate"];
+    $_extract = ['id', "user_id", "customer_id", "items_id", "equipment", "brand", "description", "accessories", "notes", "priority", "created", "modified", "finished", "conclusion", "completed_date", "paid_status", "amount_due", "sms_list", "email_list", "smsSendDate", "emailSendDate"];
+
+    $this->viewClass = 'CsvView.Csv';
+    $this->set(compact('reports', '_serialize', '_header', '_extract'));
+}
+
     /**
      * View method
      *
@@ -91,6 +146,7 @@ class ReportsController extends AppController
     public function add()
     {
         $report = $this->Reports->newEntity();
+        
         if ($this->request->is('post')) {
             $report = $this->Reports->patchEntity($report, $this->request->data);
             if ($this->Reports->save($report)) {
@@ -101,11 +157,21 @@ class ReportsController extends AppController
             }
         }
 
-        $users = $this->Reports->Users->find()->select(['id', 'email']);
+
+        $users = $this->Reports->Users
+                    ->find()
+                    ->select(['id', 'email', 'role'])
+                    //dont get list of customers
+                    ->where(['role !=' => 'customer']);
+
         $customers = $this->Reports->Customers->find()
                                               ->select(['id', 'fName', 'sName', 'mobile', 'email']);
+
+
+        $items = $this->Reports->Items->find()
+                                        ->select(['id', 'Name']);
        
-        $this->set(compact('report', 'users', 'customers'));
+        $this->set(compact('report', 'users', 'customers', 'items'));
         $this->set('_serialize', ['report']);
 
         /* authenticate 

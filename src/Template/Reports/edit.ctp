@@ -34,9 +34,15 @@
             echo $this->Form->input('accessories');
             echo $this->Form->input('notes');
             echo $this->Form->input('priority');
-            echo $this->Form->input('finished');
+            echo $this->Form->input('finished',[
+                "onclick"=>'if(this.checked){myFunction()}'
+                ]);
             echo $this->Form->input('conclusion');
-            // echo $this->Form->input('completed_date');
+            echo $this->Form->input('completed_date',[
+                 'disabled' => true,
+                   // 'class' => 'compDate'
+                
+                ]);
             echo $this->Form->input('paid_status');
             echo $this->Form->input('amount_due');
             echo $this->Form->input('sms_list');
@@ -46,3 +52,12 @@
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
 </div>
+
+<script>
+function myFunction() {
+    alert("hi");
+    document.getElementsByClassName("compDate").disabled = true;
+    alert("hi2");
+
+}
+</script>

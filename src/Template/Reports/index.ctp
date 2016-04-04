@@ -1,3 +1,14 @@
+<?php  
+$openReports = 0;
+foreach ($reports as $report){
+
+    if ($report->finished == 0) {
+        $openReports += 1;
+    }
+}
+
+?>
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -13,10 +24,10 @@
         <li><?= $this->Html->link(__('Add Report'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Admin'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-    
+        <li><?= $this->Html->link(__('Log Out'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
       </ul>
-        <a href="users/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a>
-      </ul>
+        
+      <!-- </ul> -->
     </div>
   </div>
 </nav>
@@ -26,13 +37,14 @@
 <div class="MainDiv">
 
     <h3><?= __('Reports') ?></h3>
+    <h4 style="color: #BF0026">Open reports : <?php echo $openReports; ?></h4>
 
     <!-- Create Table to view reports -->
     <table class="table table-striped table-responsive" id="indxTbl">
         <thead>
             <tr>
                 <!-- Table Head -->
-                <th><?= __('id') ?></th>
+                <th><?= __('Ticket Id') ?></th>
                 <th><?= __('customer') ?></th>
                 <th><?= __('SMS') ?></th>
                 <th><?= __('Finished?') ?></th>
@@ -45,7 +57,7 @@
 
         <tbody id="scrollit">
 
-            <?php 
+            <?php             
             //Foreach loop top loop through each row of table
             foreach ($reports as $report): 
             //For table to say if its "high" OR "Normal" Priority
@@ -54,11 +66,14 @@
             $Priority = $report->priority;
             if ($Priority== 1) {
                 $PriorityStatus = "High";
+                $priorityColor = "#ff1a1a";
             }
             //If priority checkbox was left unchecked
             //It will be False = 1 therefore low priority
             else{
                 $PriorityStatus = "Normal";
+                $priorityColor = "black";
+
             }
 
             //To Say if the Report is open or Closed-Finished
@@ -69,11 +84,13 @@
             
             //If its been closed bool = 1
             if ($Status == 1) {
-                $StatusStatus = "Closed";
+                $ticketStatus = "Closed";
+                $ticketColor = "#3399ff";
             }
             //if it asent been closed yet bool = 0
             else{
-                $StatusStatus = "Open";
+                $ticketStatus = "Open";
+                $ticketColor = "#008000";
             }
             
             //Get Full Name
@@ -120,11 +137,11 @@
                 <td class="sms" id="<?= $value ?>" style="color: <?= $color ?> "><?= h($SmsNumber) ?></td>
 
                 <!-- Add Repair Status -->
-                <td><?= h($StatusStatus) ?></td>
+                <td style="color: <?= $ticketColor ?> "><?= h($ticketStatus) ?></td>
                 <td><?= h($report->equipment) ?></td>
                 <td><?= h($report->brand) ?></td>
                 <!-- Add Priority Status -->
-                <td><?= h($PriorityStatus) ?></td>
+                <td style="color: <?= $priorityColor ?>"><?= h($PriorityStatus) ?></td>
 
 
 

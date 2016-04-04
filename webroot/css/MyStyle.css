@@ -112,3 +112,41 @@ th{
     position:relative;
     top:1px;
 }
+
+/*Add Customer Button*/
+.btnAdd0 {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #000099), color-stop(1, #1a1aff));
+    background:-moz-linear-gradient(top, #000099 5%, #1a1aff 100%);
+    background:-webkit-linear-gradient(top, #000099 5%, #1a1aff 100%);
+    background:-o-linear-gradient(top, #000099 5%, #1a1aff 100%);
+    background:-ms-linear-gradient(top, #000099 5%, #1a1aff 100%);
+    background:linear-gradient(to bottom, #000099 5%, #1a1aff 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000099', endColorstr='#1a1aff',GradientType=0);
+    background-color:#000099;
+    -moz-border-radius:41px;
+    -webkit-border-radius:41px;
+    border-radius:41px;
+    border:2px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:17px;
+    padding:2px 8px;
+    text-decoration:none;
+    text-shadow:2px -1px 0px #2f6627;
+}
+.btnAdd0:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #1a1aff), color-stop(1, #000099));
+    background:-moz-linear-gradient(top, #1a1aff 5%, #000099 100%);
+    background:-webkit-linear-gradient(top, #1a1aff 5%, #000099 100%);
+    background:-o-linear-gradient(top, #1a1aff 5%, #000099 100%);
+    background:-ms-linear-gradient(top, #1a1aff 5%, #000099 100%);
+    background:linear-gradient(to bottom, #1a1aff 5%, #000099 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1a1aff', endColorstr='#000099',GradientType=0);
+    background-color:#1a1aff;
+}
+.btnAdd0:active {
+    position:relative;
+    top:1px;
+}

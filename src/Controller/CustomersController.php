@@ -38,6 +38,17 @@ class CustomersController extends AppController
         }
     }
 
+    public function export() {
+
+    $customers = $this->Customers->find('all');
+    $_serialize = 'customers';
+    $_header = ['ID', "First Name", "Surname", "address1", "address2", "county", "mobile", "email", "landline", "created" ];
+    $_extract = ['id', "fName", "sName", "address1", "address2", "county", "mobile", "email", "landline", "created" ];
+
+    $this->viewClass = 'CsvView.Csv';
+    $this->set(compact('customers', '_serialize', '_header', '_extract'));
+}
+
     /**
      * View method
      *

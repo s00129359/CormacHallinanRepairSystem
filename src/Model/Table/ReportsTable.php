@@ -40,6 +40,10 @@ class ReportsTable extends Table
             'foreignKey' => 'customer_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Items', [
+            'foreignKey' => 'item_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**
@@ -125,6 +129,7 @@ class ReportsTable extends Table
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+        $rules->add($rules->existsIn(['item_id'], 'Items'));
         return $rules;
     }
 }
