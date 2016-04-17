@@ -26,6 +26,13 @@ class ReportsController extends AppController
             //Contain Users and Customers objects 
             'contain' => ['Users', 'Customers']
         ];
+
+        $openTickets = $this->Reports->find()
+                      ->where(['finished !=' => 1])
+                      ->count();
+
+
+        $this->set('open', $openTickets);
         $this->set('reports', $this->paginate($this->Reports));
         $this->set('_serialize', ['reports']);
 
@@ -59,14 +66,15 @@ class ReportsController extends AppController
     {
         $distinctEmplyee = $this->Reports->find()
                       ->distinct('user_id')
-                      ->where(['finished' => 1])
+                      ->where(['finished' => 0])
                       ->count();
         $openTickets = $this->Reports->find()
-                      ->where(['finished' => 1])
+                      ->where(['finished' => 0])
                       ->count();
 
         $closedTickets = $this->Reports->find()
-                      ->where(['finished' => 0]);
+                      ->select(['id', 'created', 'completed_date'])
+                      ->where(['finished' => 1]);
 
         $this->set('open', $openTickets);
         $this->set('distinct', $distinctEmplyee);

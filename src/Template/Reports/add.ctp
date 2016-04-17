@@ -91,6 +91,7 @@
             //Add Items from Database
             // echo $this->Form->input('equipment', ['options' => $itemOption]);
 
+            echo $this->Form->input('equipment');
             echo $this->Form->input('brand');
             echo $this->Form->input('description');
             echo $this->Form->input('accessories');

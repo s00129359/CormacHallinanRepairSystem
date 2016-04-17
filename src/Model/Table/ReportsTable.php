@@ -81,8 +81,8 @@ class ReportsTable extends Table
             ->allowEmpty('priority');
 
         $validator
-            ->add('finished', 'valid', ['rule' => 'boolean'])
-            ->allowEmpty('finished');
+            ->add('finished', 'valid', ['rule' => 'numeric'])
+            ->notEmpty('finished');
 
         $validator
             ->allowEmpty('conclusion');

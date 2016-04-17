@@ -1,14 +1,3 @@
-<?php  
-$openReports = 0;
-foreach ($reports as $report){
-
-    if ($report->finished == 0) {
-        $openReports += 1;
-    }
-}
-
-?>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -22,6 +11,7 @@ foreach ($reports as $report){
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><?= $this->Html->link(__('Add Report'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('KPIs'), ['action' => 'kpi']) ?></li>
         <li><?= $this->Html->link(__('Admin'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Log Out'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
@@ -37,7 +27,7 @@ foreach ($reports as $report){
 <div class="MainDiv">
 
     <h3><?= __('Reports') ?></h3>
-    <h4 style="color: #BF0026">Open reports : <?php echo $openReports; ?></h4>
+    <h4 style="color: #BF0026">Open reports : <?php echo $open; ?></h4>
 
     <!-- Create Table to view reports -->
     <table class="table table-striped table-responsive" id="indxTbl">
@@ -50,7 +40,7 @@ foreach ($reports as $report){
                 <th><?= __('Finished?') ?></th>
                 <th><?= __('Equipment') ?></th>
                 <th><?= __('Brand') ?></th>
-                <th><?= __('priority') ?></th>
+                <th><?= $this->Paginator->sort('priority', null, ['direction' => 'desc']) ?></th>
                 <th><?= __('Edit') ?></th>
             </tr>
         </thead>

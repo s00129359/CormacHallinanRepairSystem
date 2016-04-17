@@ -101,7 +101,7 @@ class CustomersController extends AppController
                 $session->write('Config.id', $id); 
                 $session->write('Config.email', $email); 
                 //redirect to create profile
-                return $this->redirect(['controller' => 'Users', 'action' => 'addCustomer']);
+                return $this->redirect(['controller' => 'Reports', 'action' => 'add']);
             } else {
                 $this->Flash->error(__('The customer could not be saved. Please, try again.'));
             }

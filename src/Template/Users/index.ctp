@@ -7,11 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="/users">Admin</a>
+      <a class="navbar-brand" href="/users">Employee</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><?= $this->Html->link(__('Add Admin'), ['action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Add Employee'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('Reports'), ['controller' => 'Reports', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
 

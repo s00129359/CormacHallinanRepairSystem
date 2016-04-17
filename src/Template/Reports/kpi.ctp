@@ -28,23 +28,37 @@
         <p><?php
         $avgTickets = $open / $distinct;
         echo $avgTickets;
-         ?> Open Ticket Average Per Customer</p>
+         ?> Open Ticket Average Per Employee</p>
+
         <h3>Average Tickets Open Time</h3>
+        <p><?php 
+                $count = 0;
+        $reportTime = 0;
+        foreach($closed as $clsd => $cl){
+          $count++;
+            $openDate = $cl->created;
+            $closdDate = $cl->completed_date;
+            $totalTime = $openDate->diff($closdDate);
+
+          $totalTime = $totalTime->format("%a");
+          
+          $totalTimeInt = (int)$totalTime;
+
+          $reportTime += $totalTimeInt;
+
+        
+        }
+
+        $AverageOpenTime = $reportTime / $count;
+        $AverageOpenTimeFormat = number_format($AverageOpenTime, 2, '.', '');
+         echo $AverageOpenTimeFormat;
+         ?> Days Open</p>
+
         <h3>Number of Open Tickets per Employee</h3>
         <h3></h3>
     </fieldset>
 </div>
 
 <?php 
-
-$count = 0;
-foreach($closed as $clsd){
-$count++;
-}
-
-echo $count;
-
-echo $open;
-echo $distinct;
 
 ?>

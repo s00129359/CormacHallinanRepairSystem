@@ -150,3 +150,17 @@ th{
     position:relative;
     top:1px;
 }
+
+
+/*Nav Bar*/
+
+.container{
+    margin: auto;
+    text-align: center;
+}
+
+nav{
+    background-color: #004d1a;
+    text-align: center;
+    color: red;
+}

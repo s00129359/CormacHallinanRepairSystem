@@ -55,9 +55,9 @@
 
 <script>
 function myFunction() {
-    alert("hi");
+    // alert("hi");
     document.getElementsByClassName("compDate").disabled = true;
-    alert("hi2");
+    // alert("hi2");
 
 }
 </script>

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1cc93a3097f983ce00d021d61b9dae38",
-    "content-hash": "f8f6c85b06ae19639595603eb1735108",
+    "hash": "bb487ec21e8a5a74766b661a99da4df9",
+    "content-hash": "e706d782381a6be0095dcab92a9c9c4d",
     "packages": [
         {
             "name": "aura/installer-default",
@@ -128,16 +128,16 @@
         },
         {
             "name": "cakephp/cakephp",
-            "version": "3.2.6",
+            "version": "3.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "1894529ac1e726c2a970e3dcf919b8878e463ff7"
+                "reference": "2d6e369b3cb216bc861453beb223f5b973d4a61d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/1894529ac1e726c2a970e3dcf919b8878e463ff7",
-                "reference": "1894529ac1e726c2a970e3dcf919b8878e463ff7",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/2d6e369b3cb216bc861453beb223f5b973d4a61d",
+                "reference": "2d6e369b3cb216bc861453beb223f5b973d4a61d",
                 "shasum": ""
             },
             "require": {
@@ -196,20 +196,20 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2016-03-29 02:49:23"
+            "time": "2016-04-11 01:25:26"
         },
         {
             "name": "cakephp/chronos",
-            "version": "0.4.8",
+            "version": "0.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/chronos.git",
-                "reference": "aef0ba4ffcd1d962dc66b4d51b0d111db089cfcf"
+                "reference": "b29a9b3cc8ae2f35d4ca9a32bc4bef001d6ee125"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/chronos/zipball/aef0ba4ffcd1d962dc66b4d51b0d111db089cfcf",
-                "reference": "aef0ba4ffcd1d962dc66b4d51b0d111db089cfcf",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/b29a9b3cc8ae2f35d4ca9a32bc4bef001d6ee125",
+                "reference": "b29a9b3cc8ae2f35d4ca9a32bc4bef001d6ee125",
                 "shasum": ""
             },
             "require": {
@@ -251,7 +251,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2016-03-10 01:50:25"
+            "time": "2016-04-16 18:14:39"
         },
         {
             "name": "cakephp/migrations",
@@ -345,22 +345,23 @@
         },
         {
             "name": "friendsofcake/bootstrap-ui",
-            "version": "v0.4.1",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
-                "reference": "1030a62bd8c04aece85824ffc8cc97703403995c"
+                "reference": "d1483230d1bb46f6ff114ae987ddefd285f09dc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/1030a62bd8c04aece85824ffc8cc97703403995c",
-                "reference": "1030a62bd8c04aece85824ffc8cc97703403995c",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/d1483230d1bb46f6ff114ae987ddefd285f09dc7",
+                "reference": "d1483230d1bb46f6ff114ae987ddefd285f09dc7",
                 "shasum": ""
             },
             "require": {
                 "cakephp/cakephp": "~3.0"
             },
             "require-dev": {
+                "cakephp/cakephp-codesniffer": "dev-master",
                 "phpunit/phpunit": "4.1.*"
             },
             "type": "cakephp-plugin",
@@ -391,7 +392,7 @@
                 "cakephp",
                 "twitter"
             ],
-            "time": "2016-03-13 10:32:02"
+            "time": "2016-04-06 12:22:58"
         },
         {
             "name": "friendsofcake/cakephp-csvview",
@@ -937,6 +938,56 @@
                 "web"
             ],
             "time": "2015-11-24 19:37:05"
+        },
+        {
+            "name": "twilio/sdk",
+            "version": "4.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "292fef46097bcc935007a117ddce9acc40a1a8c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/292fef46097bcc935007a117ddce9acc40a1a8c1",
+                "reference": "292fef46097bcc935007a117ddce9acc40a1a8c1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.1"
+            },
+            "require-dev": {
+                "mockery/mockery": ">=0.7.2",
+                "phpunit/phpunit": "4.5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "Services/Twilio.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kevin Burke",
+                    "email": "kevin@twilio.com"
+                },
+                {
+                    "name": "Kyle Conroy",
+                    "email": "kyle+pear@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "http://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2016-01-29 00:19:22"
         }
     ],
     "packages-dev": [
@@ -988,16 +1039,16 @@
         },
         {
             "name": "cakephp/debug_kit",
-            "version": "3.2.7",
+            "version": "3.2.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cakephp/debug_kit.git",
-                "reference": "c0694370a2e87cb705f9766cd69705d3ed09116b"
+                "reference": "12e27bf2a3dc1814e765db8762c056e565c08d8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/c0694370a2e87cb705f9766cd69705d3ed09116b",
-                "reference": "c0694370a2e87cb705f9766cd69705d3ed09116b",
+                "url": "https://api.github.com/repos/cakephp/debug_kit/zipball/12e27bf2a3dc1814e765db8762c056e565c08d8a",
+                "reference": "12e27bf2a3dc1814e765db8762c056e565c08d8a",
                 "shasum": ""
             },
             "require": {
@@ -1040,7 +1091,7 @@
                 "debug",
                 "kit"
             ],
-            "time": "2016-03-06 12:51:13"
+            "time": "2016-04-16 02:05:51"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

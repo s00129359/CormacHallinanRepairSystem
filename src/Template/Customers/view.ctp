@@ -71,6 +71,7 @@
                 <th><?= __('Report Id') ?></th>
                 <th><?= __('User Id') ?></th>
                 <th><?= __('Equipment') ?></th>
+                <th><?= __('Brand') ?></th>
                 <th><?= __('Finished') ?></th>
                 <th><?= __('Created') ?></th>
                 <th><?= __('Finished') ?></th>
@@ -112,6 +113,7 @@
                 </td>
                 <td><?= h($reports->user_id) ?></td>
                 <td><?= h($reports->equipment) ?></td>
+                <td><?= h($reports->brand) ?></td>
                 <td><?= h($StatusStatus) ?></td>
                 <td><?= h($reports->created) ?></td>
                 <td><?= h($reports->completed_date) ?></td>

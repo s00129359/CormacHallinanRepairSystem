@@ -36,7 +36,7 @@ $NewModifiedDate = date("d-m-Y, g:i a", strtotime($CreatedDate));
       <ul class="nav navbar-nav">
         <li><?= $this->Html->link(__('Edit Report'), ['action' => 'edit', $report->id]) ?> </li>
         <li><?= $this->Html->link(__('New Report'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('Admin'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('Employees'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
 
     
