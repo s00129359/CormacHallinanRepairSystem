@@ -47,10 +47,20 @@ class ReportsController extends AppController
 
     public function collected()
     {
-        $query = $this->Reports->find();
-        $query->where(['finished !=' => '1']);
+        $unCollected = $this->Reports->find()
+                ->where(['finished =' => '1'])
+                ->where(['collected =' => '0']);
 
-        $this->set('reports', $this->paginate($query));
+        // $query = $this->Reports->find()
+        //          ->select(['customer_id'])
+        //          ->where(['finished =' => '1'])
+        //         ->where(['collected =' => '0']);
+
+        // $q = $this->Reports->Customers->find()
+        //       ->where(['customer_id =' => 'q'])
+
+        $this->set('unCollected', $unCollected);
+        // $this->set('q', $q);
         $this->set('_serialize', ['reports']);
 
         /* authenticate 

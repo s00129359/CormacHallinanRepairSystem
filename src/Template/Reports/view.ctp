@@ -38,10 +38,9 @@ $NewModifiedDate = date("d-m-Y, g:i a", strtotime($CreatedDate));
         <li><?= $this->Html->link(__('New Report'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('Employees'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
-
+                <li><?= $this->Html->link(__('Log Out'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
     
       </ul>
-        <a href="users/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a>
       </ul>
     </div>
   </div>

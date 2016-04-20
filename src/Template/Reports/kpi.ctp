@@ -13,9 +13,8 @@
         <li><?= $this->Html->link(__('Add Report'), ['action' => 'add']) ?></li>
         <li><?= $this->Html->link(__('Admin'), ['controller' => 'Users', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
-    
+              <li><?= $this->Html->link(__('Log Out'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
       </ul>
-        <a href="users/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a>
       </ul>
     </div>
   </div>
