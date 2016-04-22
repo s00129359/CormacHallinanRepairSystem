@@ -13,7 +13,8 @@
         "twbs/bootstrap": "^3.3",
         "friendsofcake/bootstrap-ui": "~0.3",
         "friendsofcake/cakephp-csvview": "~2.0",
-        "twilio/sdk": "^4.10"
+        "twilio/sdk": "^4.10",
+        "phpmailer/phpmailer": "^5.2"
     },
     "require-dev": {
         "psy/psysh": "@stable",

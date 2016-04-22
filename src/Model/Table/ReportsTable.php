@@ -6,6 +6,7 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
+use Search\Manager;
 
 /**
  * Reports Model
@@ -25,7 +26,9 @@ class ReportsTable extends Table
     public function initialize(array $config)
     {
         parent::initialize($config);
-
+    $this->loadComponent('Search.Prg', [
+        'actions' => ['search']
+    ]);
         $this->table('reports');
         $this->displayField('id');
         $this->primaryKey('id');
@@ -44,6 +47,10 @@ class ReportsTable extends Table
             'foreignKey' => 'item_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->addBehavior('Search.Search');
+        $this->searchManager()
+            ->add('id', 'Search.Value');
     }
 
     /**

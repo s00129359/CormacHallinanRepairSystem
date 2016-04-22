@@ -40,11 +40,12 @@
             }
 
             //Get Items from database
-            // foreach ($items as $item){
-            //     $itemID = $user['Id'];
-            //     $itemName = $user['Name'];
-            // $itemOption[] = ["$itemID" => $itemName];
-            // }
+            foreach ($items as $item){
+                $itemID = $item['Id'];
+                 $itemName = $item['Name'];
+                 //bind item
+             $itemOption[] = ["$itemName" => $itemName];
+            }
 
             // Value = ID
             //Option = First and Second name concat
@@ -84,13 +85,12 @@
                                     'Add Equipment',
                                     '/items/add',
                                     ['class' => 'btnAdd0']
-                                    // ['class' => 'button', 'target' => '_blank']
                                     );
 
             //Add Items from Database
-            // echo $this->Form->input('equipment', ['options' => $itemOption]);
+             echo $this->Form->input('equipment', ['options' => $itemOption]);
 
-            echo $this->Form->input('equipment');
+            //echo $this->Form->input('equipment');
             echo $this->Form->input('brand');
             echo $this->Form->input('description');
             echo $this->Form->input('accessories');

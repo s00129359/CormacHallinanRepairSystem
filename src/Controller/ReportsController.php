@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 
 /**
  * Reports Controller
@@ -16,8 +17,36 @@ class ReportsController extends AppController
      *
      * @return void
      */
+
+    public function search()
+    {
+      $query = $this->Reports
+        // Use the plugins 'search' custom finder and pass in the
+        // processed query params
+        ->find('search', $this->Reports->filterParams($this->request->query))
+        // You can add extra things to the query if you need to
+        // ->contain(['Comments'])
+        ->where(['id IS NOT' => null]);
+
+    // $this->set('Reports', $this->paginate($query));
+    //           $this->paginate = [
+    //         //20 per ppage
+    //         'limit' => 20,
+    //         //order descing Id => Last on top
+    //         'order' => ['Reports.id' => 'desc'],
+    //         //Contain Users and Customers objects 
+    //         'contain' => ['Users', 'Customers']
+    //     ];
+
+    //     $this->set('reports', $this->paginate($this->Reports));
+    //     $this->set('_serialize', ['reports']);
+
+
+
+    }
     public function index()
     {
+
         $this->paginate = [
             //20 per ppage
             'limit' => 20,
@@ -234,7 +263,14 @@ class ReportsController extends AppController
         }
     }
 
-
+    public function email()
+    {
+      $email = new Email('default');
+$email->from(['me@example.com' => 'My Site'])
+    ->to('you@example.com')
+    ->subject('About')
+    ->send('My message');
+  }
 
 
     /**
